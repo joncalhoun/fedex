@@ -68,7 +68,9 @@ module Fedex
       def add_address_to_validate(xml)
         xml.AddressesToValidate{
           xml.Address{
-            xml.StreetLines         @address[:street]
+            @address[:street].each do |street|
+              xml.StreetLines       street
+            end
             xml.City                @address[:city]
             xml.StateOrProvinceCode @address[:state]
             xml.PostalCode          @address[:postal_code]
